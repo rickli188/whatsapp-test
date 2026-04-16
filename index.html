@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '1301576091889323',
+        cookie: true, xfbml: true, version: 'v22.0'
+      });
+    };
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+
+    function launchWhatsAppSignup() {
+      FB.login(function (response) {
+        if (response.authResponse) {
+          const code = response.authResponse.code;
+          console.log("Success! Auth Code: " + code);
+          alert("綁定成功！請去 Meta 後台搵你嘅 Phone Number ID。");
+        }
+      }, {
+        config_id: '2356774198151232',
+        response_type: 'code',
+        override_default_response_type: true,
+        extras: { featureType: "whatsapp_business_app_onboarding", setup: {} }
+      });
+    }
+  </script>
+</head>
+<body style="padding: 50px;">
+  <button onclick="launchWhatsAppSignup()" style="padding: 10px 20px; font-size: 16px;">
+    開始綁定診所 WhatsApp
+  </button>
+</body>
+</html>
